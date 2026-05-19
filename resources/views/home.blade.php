@@ -1,5 +1,10 @@
 <x-layout>
     <main class="py-10">
-        <h1 class="text-3xl font-bold underline">Aprendendo tailwind + blade no laravel</h1>
+        <h1 class="text-3xl font-bold underline">Bem vindo ao habit-tracker</h1>
+        @auth
+            <p>
+                Bem vindo(a), {{auth()->user()->name}}!
+            </p>
+        @endauth
     </main>
 </x-layout>
