@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-class SiteController extends Controller{
+class LoginController extends Controller
+{
     public function index(){
-        return view('home');
+        return view('login');
     }
 }
