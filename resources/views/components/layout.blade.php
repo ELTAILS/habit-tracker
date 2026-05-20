@@ -20,6 +20,19 @@
 
         <div>
             github
+
+            @auth
+                <form action="{{route('auth.logout')}}" method="post">
+                    <button type="submit" class="bg-white p-2 border-2">
+                        Logout
+                    </button>
+                </form>
+            @endauth
+
+            @guest
+                <a href="{{route('login')}}" class="bg-white p-2 border-2">Login</a>
+            @endguest
+
         </div>
 
     </header>
