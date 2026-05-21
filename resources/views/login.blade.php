@@ -3,7 +3,7 @@
         <section class="bg-white max-w-150 mx-auto p-10 border-2 mt-4">
             <h1 class="font-bold text-3x1">faça login</h1>
             <p cl>Insira seus dados para acessar</p>
-            <form action="/login" method="POST" class="flex flex-col">
+            <form action="{{route('auth.login')}}" method="POST" class="flex flex-col">
                 @csrf
                 <div class="flex flex-col gap-2 mb-4">
                     <label for="email">Email</label>
@@ -25,6 +25,10 @@
                 </div>
                 <button type="submit" class="bg-white p-2 border-2">Logar</button>
             </form>
+
+            <p class="text-center mt-4">
+                Ainda não tem uma conta? <a href="{{route('cadastrar')}}" class="underline hover:opacity-50 transition">Registre-se</a>
+            </p>
 
         </section>
     </main>
