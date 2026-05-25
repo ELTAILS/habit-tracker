@@ -6,10 +6,11 @@ use App\Http\Requests\loginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class LoginController extends Controller
 {
-    public function index(){
+    public function index(): View{
         return view('login');
     }
 

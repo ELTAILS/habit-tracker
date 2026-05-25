@@ -6,10 +6,11 @@ use App\Http\Requests\CadastrarRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class CadastrarController extends Controller
 {
-    public function index(){
+    public function index(): View{
         return view('cadastrar');
     }
 
