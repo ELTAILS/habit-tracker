@@ -68,6 +68,16 @@ class HabitController extends Controller
      */
     public function destroy(Habit $habit)
     {
-        //
+        //if valida se o usuario que está excruindo um habito
+        //è relamente o habito dele
+        if($habit->user_id !== Auth::id())
+        {
+            abort(403, 'FATAL erro: Habito não encontrado na sua lista');
+        }
+
+        $habit->delete();
+
+        return redirect()->route('dashboard')->with('success', 'Hábito removido com sucesso!');
+
     }
 }
