@@ -34,8 +34,13 @@
                             @method('DELETE');
                             <button type="submit" class="bg-red-500 text-white p-1 border-2 hover:opacity-50">
                             <i class="fa-solid fa-trash"></i>
-                        </button>
+                            </button>
                         </form>
+                        {{--Editar--}}
+                        <a href="{{route('habit.edit' , $h->id)}}" class="bg-yellow-500 text-white p-1 border-2 hover:opacity-50">
+                            <i class="fa-solid fa-pencil"></i>
+                        </a>
+
                     </div>
                     </li>
                 @empty

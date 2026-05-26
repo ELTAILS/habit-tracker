@@ -50,17 +50,27 @@ class HabitController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Habit $habit)
+    public function edit(Habit $habit): View
     {
-        //
+        return View('habit.edit', compact('habit'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Habit $habit)
+    public function update(HabitRequest $request, Habit $habit)
     {
-        //
+        //if valida se o usuario que está excruindo um habito
+        //è relamente o habito dele
+        if($habit->user_id !== Auth::id())
+        {
+            abort(403, 'FATAL erro: Habito não encontrado na sua lista');
+        }
+
+        $habit->update($request->all());
+
+        return redirect()->route('dashboard')->with('success', 'Hábito editado com sucesso!');
+
     }
 
     /**
