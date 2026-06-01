@@ -14,23 +14,26 @@
 <body class="bg-[#FFEDD6]">
 
     <header class="bg-white border-t border-2 flex items-center justify-between p-4">
-        <div>
-            logo
+        <div class="habit-btn habit-shadow-lg px-2 py-1 bg-habit-orange">
+            <a href="{{route('index')}}">HT</a>
         </div>
 
         <div>
-            github
 
             @auth
                 <form action="{{route('auth.logout')}}" method="post">
-                    <button type="submit" class="bg-white p-2 border-2">
-                        Logout
+                    <button type="submit" class="habit-btn p-2 habit-shadow-lg">
+                        Sair
                     </button>
                 </form>
             @endauth
 
             @guest
-                <a href="{{route('login')}}" class="bg-white p-2 border-2">Login</a>
+                <div class="flex gap-2">
+                    <a href="{{route('auth.cadastrar')}}" class="p-2 habit-shadow-lg"><strong>Cadastrar</strong></a>
+
+                    <a href="{{route('login')}}" class="bg-habit-orange p-2 habit-shadow-lg"><strong>Login</strong></a>
+                </div>
             @endguest
 
         </div>
@@ -39,8 +42,12 @@
     <!--O conteudo das paginas vai para o $slot-->
     {{--Esse comentario não aparece no inspecionar--}}
         {{$slot}}
-    <footer class="bg-white border-t border-2 text-center">
-        <p>&reg; Criado por Wagner Junior, Lnk do repositorio <a href="https://github.com/ELTAILS/habit-tracker" target="_black" class="underline">GitHub</a></p>
+    <footer class="bg-white border-t-2 p-4">
+        <p class="text-center">&reg; Criado por
+            <a href="https://www.linkedin.com/in/wagner-da-silva-junior/" target="_black" class="underline hover:text-habit-orange">Wagner Junior</a>,
+            Link do repositorio
+            <a href="https://github.com/ELTAILS/habit-tracker" target="_black" class="underline hover:text-habit-orange">GitHub</a>
+        </p>
     </footer>
 </body>
 </html>
