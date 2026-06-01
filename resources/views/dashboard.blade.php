@@ -31,7 +31,7 @@
                         {{--Excluir--}}
                         <form action="{{route('habit.destroy', $h)}}" method="post">
                             @csrf
-                            @method('DELETE');
+                            @method('DELETE')
                             <button type="submit" class="bg-red-500 text-white p-1 border-2 hover:opacity-50">
                             <i class="fa-solid fa-trash"></i>
                             </button>
