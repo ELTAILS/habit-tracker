@@ -7,6 +7,7 @@ use App\Models\Habit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use PhpParser\Node\Expr\Cast\Void_;
 
 class HabitController extends Controller
 {
@@ -90,4 +91,11 @@ class HabitController extends Controller
         return redirect()->route('dashboard')->with('success', 'Hábito removido com sucesso!');
 
     }
+
+    public function configurar(): View
+    {
+        $habits = Auth::user()->habits;
+        return(view('habit.configurar', compact('habits')));
+    }
+
 }

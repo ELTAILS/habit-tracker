@@ -14,8 +14,9 @@
 <body class="bg-[#FFEDD6]">
 
     <header class="bg-white border-t border-2 flex items-center justify-between p-4">
-        <div class="habit-btn habit-shadow-lg px-2 py-1 bg-habit-orange">
-            <a href="{{route('index')}}">HT</a>
+        <div class="flex items-center gap-2">
+            <a href="{{route('index')}}" class="habit-btn habit-shadow-lg px-2 py-1 bg-habit-orange">HT</a>
+            <p>Habiti Tracker</p>
         </div>
 
         <div>
