@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\HabitRequest;
 use App\Models\Habit;
+use App\Models\HabitLog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use PhpParser\Node\Expr\Cast\Void_;
@@ -96,6 +98,37 @@ class HabitController extends Controller
     {
         $habits = Auth::user()->habits;
         return(view('habit.configurar', compact('habits')));
+    }
+
+    public function toggle(Habit $habit)
+    {
+        if($habit->user_id !== Auth::id()){
+            abort(403, 'FATAL erro: Habito não encontrado na sua lista');
+        }
+
+        $today = Carbon::today()->toDateString();
+
+        $log = HabitLog::query()
+        ->where('habit_id', $habit->id)
+        ->where('completed_at', $today)
+        ->first();
+
+        if($log){
+            $log->delete();
+            $message = 'Hábito desmarcado.';
+        } else {
+            HabitLog::create([
+                'user_id' => Auth::user()->id,
+                'habit_id' => $habit->id,
+                'completed_at' => $today
+            ]);
+            $message = 'Hábito concluido 👏';
+        }
+
+        return redirect()
+        ->route('dashboard')
+        ->with('success', $message);
+
     }
 
 }

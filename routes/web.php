@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function() {
     ]);
 
     Route::get('/dashboard/habits/configurar', [HabitController::class, 'configurar'])->name('habit.configurar');
+    Route::post('/dashboard/habits/{habit}/toggle', [HabitController::class, 'toggle'])->name('habit.toggle');
 
 });
 

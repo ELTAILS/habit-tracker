@@ -22,11 +22,18 @@
         <div>
 
             @auth
-                <form action="{{route('auth.logout')}}" method="post">
-                    <button type="submit" class="habit-btn p-2 habit-shadow-lg">
-                        Sair
-                    </button>
-                </form>
+                <div class="flex gap-2">
+                    <form action="{{route('auth.logout')}}" method="post">
+                        <button type="submit" class="habit-btn p-2 habit-shadow-lg">
+                            Sair
+                        </button>
+                    </form>
+
+                    <a href="{{route('dashboard')}}" class="bg-habit-orange p-2 habit-shadow-lg">
+                        <strong>Dashboard</strong>
+                    </a>
+
+                </div>
             @endauth
 
             @guest

@@ -17,13 +17,28 @@
             </h2>
             <ul class="flex flex-col gap-2">
                 @forelse ($habits as $h)
+                @php
+                    $wasCompletedToday = $h->habitLogs
+                    ->where('user_id', auth()->id())
+                    ->where('completed_at', \Carbon\Carbon::today()->toDateString())
+                    ->isNOtEmpty()
+                @endphp
                     <li class="habit-shadow-lg p-2 bg-[#ffdaac]">
-                        <div class="flex gap-2 items-center">
-                            <input type="checkbox" class="w-5 h-5" {{ $h->done ? 'checked' : '' }}>
+                        <form method="POST"
+                        action="{{route('habit.toggle', $h->id)}}"
+                        class="flex gap-2 items-center"
+                        id="form-{{$h->id}}"
+                        >
+                        @csrf
+                            <input type="checkbox"
+                            class="w-5 h-5" {{ $h->done ? 'checked' : '' }}
+                            {{$wasCompletedToday ? 'checked' : '' }}
+                            onchange="document.getElementById('form-{{$h->id}}').submit()"
+                            >
                             <p class="font-bold text-lg">
                                 {{$h->name}}
                             </p>
-                        </div>
+                        </form>
                     </li>
                 @empty
                     <p>
