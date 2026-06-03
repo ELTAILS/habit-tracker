@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\HabitRequest;
 use App\Models\Habit;
 use App\Models\HabitLog;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,7 @@ use PhpParser\Node\Expr\Cast\Void_;
 
 class HabitController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * Display a listing of the resource.
      */
@@ -55,6 +57,7 @@ class HabitController extends Controller
      */
     public function edit(Habit $habit): View
     {
+        $this->authorize('update', $habit);
         return View('habit.edit', compact('habit'));
     }
 
@@ -63,12 +66,7 @@ class HabitController extends Controller
      */
     public function update(HabitRequest $request, Habit $habit)
     {
-        //if valida se o usuario que está excruindo um habito
-        //è relamente o habito dele
-        if($habit->user_id !== Auth::id())
-        {
-            abort(403, 'FATAL erro: Habito não encontrado na sua lista');
-        }
+        $this->authorize('update', $habit);
 
         $habit->update($request->all());
 
@@ -81,12 +79,7 @@ class HabitController extends Controller
      */
     public function destroy(Habit $habit)
     {
-        //if valida se o usuario que está excruindo um habito
-        //è relamente o habito dele
-        if($habit->user_id !== Auth::id())
-        {
-            abort(403, 'FATAL erro: Habito não encontrado na sua lista');
-        }
+        $this->authorize('delete', $habit);
 
         $habit->delete();
 
@@ -102,9 +95,7 @@ class HabitController extends Controller
 
     public function toggle(Habit $habit)
     {
-        if($habit->user_id !== Auth::id()){
-            abort(403, 'FATAL erro: Habito não encontrado na sua lista');
-        }
+        $this->authorize('toggle', $habit);
 
         $today = Carbon::today()->toDateString();
 
