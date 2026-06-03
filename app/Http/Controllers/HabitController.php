@@ -122,4 +122,21 @@ class HabitController extends Controller
 
     }
 
+
+    public function historico(): View
+    {
+        //1. Ano Atual
+        $selectedYear = Carbon::now()->year;
+        //2.Setar inicio e fim do ano
+        $startDate = Carbon::create($selectedYear, 1, 1);
+        $endDate = Carbon::create($selectedYear, 12,31);
+        //3. Trazer Hábitos com os logs filtrados pelo ano atual
+        $habits = Auth::user()->habits()
+        ->with(['habitLogs' => function($query) use ($startDate, $endDate){
+            $query->whereBetween('completed_at', [$startDate, $endDate]);
+        }])
+        ->get();
+        return view('habit.historico', compact('habits', 'selectedYear'));
+    }
+
 }
