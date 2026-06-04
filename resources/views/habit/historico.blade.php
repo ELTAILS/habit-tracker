@@ -8,7 +8,7 @@
     <div class="my-4">
       @foreach($avaliableYears as $y)
         <a
-          href="{{ route('habits.history', $y) }}"
+          href="{{ route('habit.historico', $y) }}"
           class="habit-btn habit-shadow-lg p-2 inline-block
           {{ $selectedYear == $y ? 'bg-habit-orange' : 'bg-white' }}"
         >
@@ -25,7 +25,7 @@
         <p class="text-black">
           Nenhum hábito para exibir histórico.
         </p>
-        <a href="{{ route('habits.create') }}" class="underline ">
+        <a href="{{ route('habit.create') }}" class="underline ">
           Crie um novo hábito
         </a>
       </div>

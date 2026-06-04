@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function() {
 
     Route::post('/dashboard/habits/{habit}/toggle', [HabitController::class, 'toggle'])->name('habit.toggle');
 
-    Route::get('/dashboard/habits/historico', [HabitController::class, 'historico'])->name('habit.historico');
+    Route::get('/dashboard/habits/historico/{year?}', [HabitController::class, 'historico'])->name('habit.historico');
 
 });
 

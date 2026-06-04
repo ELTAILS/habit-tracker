@@ -26,11 +26,49 @@ class Habit extends Model
         return $this->hasMany(HabitLog::class);
     }
 
+    /**
+     * Gere uma grade anual para o ano fornecido.
+     * @param int $year
+     * @return array
+     */
+
+    public static function generateYearGrid($year): array
+    {
+        $startDate = Carbon::create($year, 1, 1);
+        $endDate = Carbon::create($year, 12,31);
+
+        $weeks = [];
+        $currentWeek = [];
+
+        $firstDayOfWeek = $startDate->dayOfWeek;
+        for($i = 0; $i < $firstDayOfWeek; $i++){
+            $currentWeek[] = null; //placeholder vazio
+        }
+
+        for($date = $startDate->copy(); $date->lte($endDate); $date->addDay()){
+            $currentWeek[] = $date->copy();
+            if($date->isSaturday() || $date->eq($endDate)){
+                $weeks[] = $currentWeek;
+                $currentWeek = [];
+            }
+        }
+
+        return $weeks;
+
+    }
+
     public function wasCompletedToday(): bool
     {
         return $this->habitLogs
         ->where('completed_at', Carbon::today()->toDateString())
-        ->isNOtEmpty();
+        ->isNotEmpty();
+    }
+
+    public function wasCompletedOn(Carbon $date): bool
+    {
+        return $this->habitLogs
+        ->where('completed_at', $date->toDateString())
+        ->isNotEmpty();
     }
 
 }

@@ -123,10 +123,14 @@ class HabitController extends Controller
     }
 
 
-    public function historico(): View
+    public function historico(?int $year = null): View
     {
         //1. Ano Atual
-        $selectedYear = Carbon::now()->year;
+        $selectedYear = $year ?? Carbon::now()->year;
+        $avaliableYears = range(2025, Carbon::now()->year);
+
+        if(!in_array($selectedYear, $avaliableYears)) abort(404, "Ano invalido");
+
         //2.Setar inicio e fim do ano
         $startDate = Carbon::create($selectedYear, 1, 1);
         $endDate = Carbon::create($selectedYear, 12,31);
@@ -136,7 +140,8 @@ class HabitController extends Controller
             $query->whereBetween('completed_at', [$startDate, $endDate]);
         }])
         ->get();
-        return view('habit.historico', compact('habits', 'selectedYear'));
+
+        return view('habit.historico', compact('habits', 'selectedYear', 'avaliableYears'));
     }
 
 }
