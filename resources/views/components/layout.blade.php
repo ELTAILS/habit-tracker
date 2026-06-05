@@ -11,7 +11,7 @@
     @vite('resources/css/app.css')
     <title>Habit-tracker</title>
 </head>
-<body class="bg-[#FFEDD6] relative">
+<body class="bg-[#FFEDD6] relative habit-bg min-h-[calc(100vh-160px)] flex flex-col justify-between">
 
     <header class="bg-white border-t border-2 flex items-center justify-between p-4">
         <div class="flex items-center gap-2">
@@ -19,7 +19,7 @@
             <p>Habiti Tracker</p>
         </div>
 
-        <div>
+        <div class="flex gap-2 items-center">
 
             @auth
                 <div class="flex gap-2">
@@ -44,6 +44,8 @@
                 </div>
             @endguest
 
+            <a href="https://github.com/ELTAILS/habit-tracker" class="habit-btn habit-shadow-lg p-1" target="_black"><i class="fa-brands fa-github text-3xl habit-color"></i></a>
+
         </div>
 
     </header>
@@ -55,9 +57,9 @@
         <script type="module" src="{{Vite::asset('resources/js/app.js')}}"></script>
     <footer class="bg-white border-t-2 p-4">
         <p class="text-center">&reg; Criado por
-            <a href="https://www.linkedin.com/in/wagner-da-silva-junior/" target="_black" class="underline hover:text-habit-orange">Wagner Junior</a>,
+            <a href="https://www.linkedin.com/in/wagner-da-silva-junior/" target="_black" class="underline hover:text-habit-orange font-bold">Wagner Junior</a>,
             Link do repositorio
-            <a href="https://github.com/ELTAILS/habit-tracker" target="_black" class="underline hover:text-habit-orange">GitHub</a>
+            <a href="https://github.com/ELTAILS/habit-tracker" target="_black" class="underline font-bold hover:text-habit-orange">GitHub</a>
         </p>
     </footer>
 </body>

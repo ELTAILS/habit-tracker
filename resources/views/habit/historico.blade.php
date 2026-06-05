@@ -3,7 +3,9 @@
 
     {{-- NAVBAR --}}
     <x-navbar />
-
+    <h2 class="text-lg mt-8 mb-2 font-bold">
+        Histórico
+    </h2>
     {{-- YEAR SELECTION --}}
     <div class="my-4">
       @foreach($avaliableYears as $y)

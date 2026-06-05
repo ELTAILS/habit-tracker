@@ -1,8 +1,10 @@
 <x-layout>
     <main class="py-10">
-        <h1>Editar hábito</h1>
+        <h1 class="font-bold text-2xl text-center">
+            Editar hábito
+        </h1>
 
-        <section class="bg-white max-w-150 mx-auto p-10 border-2 mt-4">
+        <section class="habit-shadow-lg bg-white max-w-150 mx-auto p-10 mt-4 font-bold">
             <form action="{{route('habit.update', $habit->id)}}" method="POST" class="flex flex-col">
                 @csrf
                 @method('PUT')
@@ -15,7 +17,7 @@
                     </p>
                     @enderror
                 </div>
-                <button type="submit" class="bg-white border-2 p-2">
+                <button type="submit" class="habit-shadow-lg p-2 bg-habit-orange">
                     Editar Hábito
                 </button>
             </form>

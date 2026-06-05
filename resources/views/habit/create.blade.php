@@ -1,8 +1,10 @@
 <x-layout>
     <main class="py-10">
-        <h1>Novo habito</h1>
+        <h1 class="font-bold text-2xl text-center">
+            Cadastrar novo habito
+        </h1>
 
-        <section class="bg-white max-w-150 mx-auto p-10 border-2 mt-4">
+        <section class="habit-shadow-lg bg-white max-w-150 mx-auto p-10 mt-4 font-bold">
             <form action="{{route('habit.store')}}" method="post" class="flex flex-col">
                 @csrf
                 <div class="flex flex-col gap-2 mb-4">
@@ -14,7 +16,7 @@
                     </p>
                     @enderror
                 </div>
-                <button type="submit" class="bg-white border-2 p-2">
+                <button type="submit" class="habit-shadow-lg p-2 bg-habit-orange">
                     Adicionar Hábito
                 </button>
             </form>
