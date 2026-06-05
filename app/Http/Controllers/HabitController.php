@@ -83,7 +83,7 @@ class HabitController extends Controller
 
         $habit->delete();
 
-        return redirect()->route('dashboard')->with('success', 'Hábito removido com sucesso!');
+        return redirect()->route('dashboard')->with('warning', 'Hábito removido com sucesso!');
 
     }
 
@@ -106,6 +106,7 @@ class HabitController extends Controller
 
         if($log){
             $log->delete();
+            $alert = 'warning';
             $message = 'Hábito desmarcado.';
         } else {
             HabitLog::create([
@@ -113,12 +114,13 @@ class HabitController extends Controller
                 'habit_id' => $habit->id,
                 'completed_at' => $today
             ]);
+            $alert = 'success';
             $message = 'Hábito concluido 👏';
         }
 
         return redirect()
         ->route('dashboard')
-        ->with('success', $message);
+        ->with($alert, $message);
 
     }
 

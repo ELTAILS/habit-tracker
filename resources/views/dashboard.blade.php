@@ -2,15 +2,6 @@
     <main class="py-10 min-h-[calc(100vh-160px)] px-4">
         <x-navbar />
 
-        @session('success')
-            <br> <br>
-            <div class="flex">
-                <p class="bg-green-100 border border-gren-400 text-green-700 px-4 py-3 rounded mb-4">
-                    {{session('success')}}
-                </p>
-            </div>
-        @endsession
-
         <div>
             <h2 class="text-lg mt-8 mb-2">
                 {{date('d/m/Y')}}

@@ -11,7 +11,7 @@
     @vite('resources/css/app.css')
     <title>Habit-tracker</title>
 </head>
-<body class="bg-[#FFEDD6]">
+<body class="bg-[#FFEDD6] relative">
 
     <header class="bg-white border-t border-2 flex items-center justify-between p-4">
         <div class="flex items-center gap-2">
@@ -49,7 +49,10 @@
     </header>
     <!--O conteudo das paginas vai para o $slot-->
     {{--Esse comentario não aparece no inspecionar--}}
+    <x-toast />
         {{$slot}}
+        {{--Scripts--}}
+        <script type="module" src="{{Vite::asset('resources/js/app.js')}}"></script>
     <footer class="bg-white border-t-2 p-4">
         <p class="text-center">&reg; Criado por
             <a href="https://www.linkedin.com/in/wagner-da-silva-junior/" target="_black" class="underline hover:text-habit-orange">Wagner Junior</a>,
